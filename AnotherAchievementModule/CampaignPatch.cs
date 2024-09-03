@@ -27,30 +27,15 @@ namespace AnotherAchievementModule
             _allowedModules = strs;
         }
 
-        [HarmonyPrefix]
-        [HarmonyPatch("DetermineModules")]
+        [HarmonyPostfix]
+        [HarmonyPatch("DeterminedSavedStats")]
 
-        private static bool DetermineModules(ref List<string> ____previouslyUsedModules)
+        private static void DeterminedSavedStats(ref List<string> ____previouslyUsedModules, Campaign.GameLoadingType gameLoadingType)
         {
-            if (____previouslyUsedModules == null)
-            {
-                ____previouslyUsedModules = new List<string>();
-            }
-            string[] moduleNames = SandBoxManager.Instance.ModuleManager.ModuleNames;
-            for (int i = 0; i < (int) moduleNames.Length; i++)
-            {
-                string str = moduleNames[i];
-                if (!____previouslyUsedModules.Contains(str))
-                {
-                    ____previouslyUsedModules.Add(str);
-                }
-            }
-
             if (Main.Settings!.ReEnableAchievementsInSaves)
             {
                 ____previouslyUsedModules.RemoveAll((string x) => !_allowedModules.Contains(x)); 
             }
-            return false;
         }
     }
 }

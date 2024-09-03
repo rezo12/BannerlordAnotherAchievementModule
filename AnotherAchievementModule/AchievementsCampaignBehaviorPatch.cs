@@ -133,8 +133,8 @@ namespace AnotherAchievementModule
         }
 
         [HarmonyPostfix]
-        [HarmonyPatch("OnSessionLaunched")]
-        private static void OnSessionLaunched(ref bool ____deactivateAchievements,CampaignGameStarter campaignGameStarter)
+        [HarmonyPatch("OnNewGameCreatedPartialFollowUpEnd")]
+        private static void OnNewGameCreatedPartialFollowUpEnd(ref bool ____deactivateAchievements,CampaignGameStarter starter)
         {
             if (!____deactivateAchievements)
             {
