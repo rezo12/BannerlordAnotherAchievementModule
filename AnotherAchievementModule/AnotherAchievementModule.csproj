@@ -16,7 +16,6 @@
   <!-- Versions of Major Dependencies (For Package References & SubModule.xml Substitution) -->
   <PropertyGroup>
     <BuildResourcesVersion>1.1.0.108</BuildResourcesVersion>
-    <HarmonyVersion>2.3.3</HarmonyVersion>
     <MCM_V5>true</MCM_V5>
   </PropertyGroup>
 
@@ -73,13 +72,6 @@
 
   <!-- NuGet References -->
   <ItemGroup>
-    <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Bannerlord.MCM" Version="$(MCMVersion)" />
-    <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" IncludeAssets="compile" />
     <!-- Enable NET5 Features on NET472 -->
     <PackageReference Include="IsExternalInit" Version="1.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -98,6 +90,14 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="$(GameFolder)\bin\Win64_Shipping_Client\Newtonsoft.*.dll">
+      <HintPath>%(Identity)</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="$(GameFolder)\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\*.dll">
+      <HintPath>%(Identity)</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="$(GameFolder)\Modules\Bannerlord.MBOptionScreen\bin\Win64_Shipping_Client\*.dll">
       <HintPath>%(Identity)</HintPath>
       <Private>False</Private>
     </Reference>
